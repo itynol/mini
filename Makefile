@@ -6,13 +6,13 @@
 #    By: jterry <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/11 15:54:02 by jterry            #+#    #+#              #
-#    Updated: 2019/05/08 19:34:56 by jterry           ###   ########.fr        #
+#    Updated: 2019/05/09 03:25:38 by jterry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 FLAGS = -Wall -Wextra -Werror
-SRCS = minishell.c command.c env_obr.c
+SRCS = minishell.c command.c env_obr.c dollar.c
 OBJS = $(SRCS:.c=.o)
 INCLUDES = minishell.h
 

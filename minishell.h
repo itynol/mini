@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/08 20:41:14 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 03:31:07 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_cmd
 	struct _cmd		*next;
 }					t_cmd;
 
+char		**ft_dollar(char *com, char **tmp_env);
 void		unsetenv_command(char ***tmp_env, char **command);
 char		**ft_envadd(char **env, int flag, int pos);
 void		setenv_command(char ***tmp_env, char **command);

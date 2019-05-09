@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 18:20:43 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/08 21:02:28 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 03:36:44 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,24 +123,27 @@ void		echo_command(char **command)
 	flag = 0;
 	j = 1;
 	i = 1;
-	while (command[i][0] == '-')
+	if (command[i])
 	{
-		while(command[i][j] == 'n')
-			j++;
-		if (command[i][j])
-			break;
-		j = 0;
-		flag++;
-		i++;
+		while (command[i][0] == '-')
+		{
+			while(command[i][j] == 'n')
+				j++;
+			if (command[i][j])
+				break;
+			j = 0;
+			flag++;
+			i++;
+		}
+		while (command[i])
+		{
+			write(1, command[i], ft_strlen(command[i]));
+			if (command[i + 1])
+				write(1, " ", 1);	
+			i++;
+		}
+		if (flag != 0)
+			write(1, "\033[7m%\033[0m", 9);
+		write(1, "\n", 1);
 	}
-	while (command[i])
-	{
-		write(1, command[i], ft_strlen(command[i]));
-		if (command[i + 1])
-			write(1, " ", 1);	
-		i++;
-	}
-	if (flag != 0)
-		write(1, "\033[7m%\033[0m", 9);
-	write(1, "\n", 1);
 }

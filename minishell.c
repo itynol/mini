@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:06:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/08 21:38:30 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 03:35:36 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		ft_read(char **tmp_env, char *str, char **command)
 		commands = ft_strsplit(str, ';');
 		while (commands[l])
 		{
-			command = ft_dollar(com, tmp_env);
+			command = ft_dollar(commands[l], tmp_env);
 			if (ft_strcmp(command[0], "exit") == 0)
 				exit (0);
 			i = command_check(&tmp_env, command);
