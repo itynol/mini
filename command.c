@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 18:20:43 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/09 03:36:44 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 05:57:45 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void		cd_command(char **command, char **tmp_env)
 	char	*buf;
 	char	**tmp;
 
-
-	if (!(ft_strcmp(command[1], "-")) && !(command[2]))
+	if (command[1] && !(ft_strcmp(command[1], "-")) && !(command[2]))
 	{
 		change_pass(tmp_env);
 		return ;
@@ -42,7 +41,8 @@ void		cd_command(char **command, char **tmp_env)
 		ft_getenv(tmp_env, "HOME", &buf);
 		chdir(buf);
 		tmp[1] = buf;
-		change_pwd(tmp_env, tmp);
+			change_pwd(tmp_env, tmp);
+
 		free (tmp);
 	}
 	else if (command[2])
@@ -90,7 +90,7 @@ void		ls_command(char **command)
 		endID = waitpid(childID, NULL, 0);
 }
 
-int			all_command(char **command)
+int			all_command(char **command, char **tmp_env)
 {
 	pid_t	childID;
 	pid_t	endID;
@@ -99,7 +99,7 @@ int			all_command(char **command)
 	childID = fork();
 	endID = 0;
 	if (childID == 0)
-		i = execve(command[0], command, NULL);
+		i = execve(command[0], command, tmp_env);
 	while (endID != childID)
 		endID = waitpid(childID, NULL, 0);
 	return (i);
@@ -143,7 +143,7 @@ void		echo_command(char **command)
 			i++;
 		}
 		if (flag != 0)
-			write(1, "\033[7m%\033[0m", 9);
+			write(1, "\033[7;1m%\033[0m", 12);
 		write(1, "\n", 1);
 	}
 }

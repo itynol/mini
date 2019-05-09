@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 18:19:17 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/08 21:28:09 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 05:20:38 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,24 +95,30 @@ int			ft_getenv(char **tmp_env, char *str, char **buf)
 
 void		unsetenv_command(char ***tmp_env, char **command)
 {
-	char	**tr;
 	int		i;
+	int		l;
 
-	tr = ft_strsplit(command[1], '=');
-	if ((i = ft_getenv(*tmp_env, tr[0], NULL)) < 0)
+	l = 0;
+	while (command[++l])
 	{
-		free(tr);
-		return ;
+		if ((i = ft_getenv(*tmp_env, command[l], NULL)) < 0)
+			continue ;
+		*tmp_env = ft_envadd(*tmp_env, -1, i);
 	}
-	*tmp_env = ft_envadd(*tmp_env, -1, i);
-	free (tr);
 }
 
 void		setenv_command(char ***tmp_env, char **command)
 {
 	char	**tr;
+	int		i;
 
-	tr = ft_strsplit(command[1], '=');
-	*tmp_env = ft_setenv(*tmp_env, tr[0], tr[1]);
-	free (tr);
+	i = 0;
+	while (command[++i])
+	{
+		tr = ft_strsplit(command[i], '=');
+		if (!tr[1])
+			continue ;
+		*tmp_env = ft_setenv(*tmp_env, tr[0], tr[1]);
+		free (tr);
+	}
 }

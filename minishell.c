@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:06:35 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/09 03:35:36 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 05:52:54 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void		ft_read(char **tmp_env, char *str, char **command)
 	{
 		l = 0;
 		str = readline("$>");
+		str = ft_strtrim(str);
 		if (!str || !(*str))
 			continue ;
 		add_history(str);
@@ -98,7 +99,7 @@ void		ft_read(char **tmp_env, char *str, char **command)
 			i = command_check(&tmp_env, command);
 			if (i == 0)
 			{
-				if (all_command(command) < 0)
+				if (all_command(command, tmp_env) < 0)
 				{
 					write(2, "minishell: command not found: ", 30);
 					ft_putstr(command[0]);

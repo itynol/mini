@@ -6,7 +6,7 @@
 /*   By: jterry <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/11 15:57:31 by jterry            #+#    #+#             */
-/*   Updated: 2019/05/09 03:31:07 by jterry           ###   ########.fr       */
+/*   Updated: 2019/05/09 05:47:36 by jterry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		unsetenv_command(char ***tmp_env, char **command);
 char		**ft_envadd(char **env, int flag, int pos);
 void		setenv_command(char ***tmp_env, char **command);
 char		**ft_setenv(char **tmp_env, char *str, char *str2);
-int			all_command(char **command);
+int			all_command(char **command, char **tmp_env);
 void		echo_command(char **command);
 void		cd_command(char **command, char **tmp_env);
 void		change_pwd(char **tmp_env, char **com);
